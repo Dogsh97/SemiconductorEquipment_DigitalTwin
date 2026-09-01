@@ -4,8 +4,8 @@ enum class ChamberState {
 	Idle,
 	Ready,
 	Open,
-	Close,
-	processing,
+	Closed,
+	Processing,
 	Error
 };
 
@@ -18,5 +18,5 @@ class Chamber {
 		void Open();
 		void Close();
 		void Process();
-		void Complete();
+		void ProcessComplete();
 };
