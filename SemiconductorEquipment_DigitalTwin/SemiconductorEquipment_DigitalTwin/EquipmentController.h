@@ -12,7 +12,7 @@ class EquipmentController {
 		Robot robot;
 
 	public:
-		void getWaferInfo();
+		EquipmentController();
 		void Initialize();
 		void Start();
 		void Stop();

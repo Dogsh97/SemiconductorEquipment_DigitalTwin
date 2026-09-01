@@ -25,7 +25,7 @@ void Chamber::Open() {
 
 void Chamber::Close() {
 	if (chamberState == ChamberState::Open) {
-		chamberState = ChamberState::Close;
+		chamberState = ChamberState::Closed;
 	}
 	else {
 		chamberState = ChamberState::Error;
@@ -33,16 +33,16 @@ void Chamber::Close() {
 }
 
 void Chamber::Process() {
-	if (chamberState == ChamberState::Close) {
-		chamberState = ChamberState::processing;
+	if (chamberState == ChamberState::Closed) {
+		chamberState = ChamberState::Processing;
 	}
 	else {
 		chamberState = ChamberState::Error;
 	}
 }
 
-void Chamber::Complete() {
-	if (chamberState == ChamberState::processing) {
+void Chamber::ProcessComplete() {
+	if (chamberState == ChamberState::Processing) {
 		chamberState = ChamberState::Idle;
 	}
 	else {

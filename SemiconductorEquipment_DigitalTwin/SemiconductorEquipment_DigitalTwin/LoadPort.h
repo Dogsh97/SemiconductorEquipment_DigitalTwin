@@ -1,8 +1,9 @@
 #pragma once
 enum class LoadPortState {
 	Idle,
-	Load,
-	Unload,
+	Loading,
+	Unloading,
+	Complete,
 	Error
 };
 
@@ -12,8 +13,9 @@ class LoadPort {
 		bool waferDetected;
 	public:
 		LoadPort();
-		bool IswaferDetected() const;
+		bool IsWaferDetected() const;
 		void Load();
 		void Unload();
-		void Complete();
+		void LoadComplete();
+		void UnloadComplete();
 };

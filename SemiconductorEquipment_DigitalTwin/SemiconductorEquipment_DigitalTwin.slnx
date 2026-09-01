@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="SemiconductorEquipment_DigitalTwin/SemiconductorEquipment_DigitalTwin.vcxproj" />
+  <Project Path="SemiconductorEquipment_DigitalTwin/SemiconductorEquipment_DigitalTwin.vcxproj" Id="e034f4b7-6cf1-4e8f-a84c-40b324ec778f" />
 </Solution>
