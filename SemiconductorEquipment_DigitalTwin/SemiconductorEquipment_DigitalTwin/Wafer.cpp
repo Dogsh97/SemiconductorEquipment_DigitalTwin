@@ -13,3 +13,4 @@ int Wafer::GetWaferId() const {
 int Wafer::GetRecipeId() const{
 	return RecipeId;
 }
+

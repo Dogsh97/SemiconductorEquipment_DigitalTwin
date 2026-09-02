@@ -1,12 +1,13 @@
 #include "Chamber.h"
 
-Chamber::Chamber() 
-	:chamberState(ChamberState::Idle)
+Chamber::Chamber()
+	:chamberState(ChamberState::Idle),
+	currentWafer(nullptr)
 {
 }
 
 void Chamber::Ready() {
-	if (chamberState == ChamberState::Idle) {
+	if (chamberState == ChamberState::Idle && currentWafer == nullptr) {
 		chamberState = ChamberState::Ready;
 	}
 	else {
@@ -24,7 +25,7 @@ void Chamber::Open() {
 }
 
 void Chamber::Close() {
-	if (chamberState == ChamberState::Open) {
+	if (chamberState == ChamberState::Open && currentWafer != nullptr) {
 		chamberState = ChamberState::Closed;
 	}
 	else {
@@ -43,9 +44,35 @@ void Chamber::Process() {
 
 void Chamber::ProcessComplete() {
 	if (chamberState == ChamberState::Processing) {
+		chamberState = ChamberState::Complete;
+	}
+	else {
+		chamberState = ChamberState::Error;
+	}
+}
+
+void Chamber::Reset() {
+	if (chamberState == ChamberState::Complete && currentWafer == nullptr) {
 		chamberState = ChamberState::Idle;
 	}
 	else {
 		chamberState = ChamberState::Error;
+	}
+}
+
+Wafer* Chamber::GiveWafer() {
+	Wafer* wafer = currentWafer;
+	currentWafer = nullptr;
+	return wafer;
+}
+
+bool Chamber::ReceiveWafer(Wafer* wafer) {
+	if (currentWafer == nullptr && wafer != nullptr) {
+		currentWafer = wafer;
+		return true;
+	}
+	else {
+		chamberState = ChamberState::Error;
+		return false;
 	}
 }
