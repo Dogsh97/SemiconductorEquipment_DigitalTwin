@@ -1,4 +1,5 @@
 #pragma once
+#include "Wafer.h"
 
 enum class ChamberState {
 	Idle,
@@ -6,12 +7,14 @@ enum class ChamberState {
 	Open,
 	Closed,
 	Processing,
+	Complete,
 	Error
 };
 
 class Chamber {
 	private:
 		ChamberState chamberState;
+		Wafer* currentWafer;
 	public:
 		Chamber();
 		void Ready();
@@ -19,4 +22,7 @@ class Chamber {
 		void Close();
 		void Process();
 		void ProcessComplete();
+		void Reset();
+		Wafer* GiveWafer();
+		bool ReceiveWafer(Wafer* wafer);
 };

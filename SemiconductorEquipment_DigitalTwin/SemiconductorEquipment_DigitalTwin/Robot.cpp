@@ -1,7 +1,8 @@
 #include "Robot.h"
 
 Robot::Robot()
-	:robotState(RobotState::Idle)
+	:robotState(RobotState::Idle),
+	currentWafer(nullptr)
 {
 }
 
@@ -35,7 +36,7 @@ void Robot::Pick() {
 }
 
 void Robot::PickComplete() {
-	if (robotState == RobotState::Picking) {
+	if (robotState == RobotState::Picking && currentWafer != nullptr) {
 		robotState = RobotState::Picked;
 	}
 	else {
@@ -44,7 +45,7 @@ void Robot::PickComplete() {
 }
 
 void Robot::Place() {
-	if (robotState == RobotState::Picked) {
+	if (robotState == RobotState::Picked ) {
 		robotState = RobotState::Placing;
 	}
 	else {
@@ -53,7 +54,7 @@ void Robot::Place() {
 }
 
 void Robot::PlaceComplete() {
-	if (robotState == RobotState::Placing) {
+	if (robotState == RobotState::Placing && currentWafer == nullptr) {
 		robotState = RobotState::Placed;
 	}
 	else {
@@ -64,4 +65,21 @@ void Robot::PlaceComplete() {
 void Robot::Reset() {
 	robotState = RobotState::Idle;
 	
+}
+
+Wafer* Robot::GiveWafer() {
+	Wafer* wafer = currentWafer;
+	currentWafer = nullptr;
+	return wafer;
+}
+
+bool Robot::ReceiveWafer(Wafer* wafer) {
+	if (currentWafer == nullptr && wafer != nullptr) {
+		currentWafer = wafer;
+		return true;
+	}
+	else {
+		robotState = RobotState::Error;
+		return false;
+	}
 }

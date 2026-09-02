@@ -1,4 +1,5 @@
 #pragma once
+#include "Wafer.h"
 
 enum class RobotState {
 	Idle,
@@ -14,6 +15,7 @@ enum class RobotState {
 class Robot {
 	private:
 		RobotState robotState;
+		Wafer* currentWafer;
 	public:
 		Robot();
 		void Move();
@@ -23,4 +25,6 @@ class Robot {
 		void Place();
 		void PlaceComplete();
 		void Reset();
+		Wafer* GiveWafer();
+		bool ReceiveWafer(Wafer* wafer);
 };

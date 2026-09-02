@@ -2,7 +2,8 @@
 
 LoadPort::LoadPort()
 	:loadportState(LoadPortState::Idle),
-	waferDetected(false)
+	waferDetected(false),
+	currentWafer(nullptr)
 {
 }
 
@@ -29,7 +30,7 @@ void LoadPort::Unload() {
 }
 
 void LoadPort::LoadComplete() {
-	if (loadportState == LoadPortState::Loading) {
+	if (loadportState == LoadPortState::Loading && currentWafer != nullptr) {
 		loadportState = LoadPortState::Complete;
 		waferDetected = true;
 	}
@@ -39,11 +40,28 @@ void LoadPort::LoadComplete() {
 }
 
 void LoadPort::UnloadComplete() {
-	if (loadportState == LoadPortState::Unloading) {
+	if (loadportState == LoadPortState::Unloading && currentWafer == nullptr) {
 		loadportState = LoadPortState::Idle;
 		waferDetected = false;
 	}
 	else {
 		loadportState = LoadPortState::Error;
+	}
+}
+
+Wafer* LoadPort::GiveWafer() {
+	Wafer* wafer = currentWafer;
+	currentWafer = nullptr;
+	return wafer;
+}
+
+bool LoadPort::ReceiveWafer(Wafer* wafer) {
+	if (currentWafer == nullptr && wafer != nullptr) {
+		currentWafer = wafer;
+		return true;
+	}
+	else {
+		loadportState = LoadPortState::Error;
+		return false;
 	}
 }
