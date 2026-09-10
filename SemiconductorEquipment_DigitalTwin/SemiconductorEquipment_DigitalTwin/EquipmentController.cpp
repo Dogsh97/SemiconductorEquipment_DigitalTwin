@@ -17,7 +17,7 @@ void EquipmentController::Start() {
 	bool isSucess = loadPort.ReceiveWafer(&wafer);
 	if (isSucess) {
 		loadPort.LoadComplete();
-		robot.Move();
+		robot.Move(1,1,1);
 		robot.MoveComplete();
 		robot.Pick();
 		isSucess = robot.ReceiveWafer(loadPort.GiveWafer());
