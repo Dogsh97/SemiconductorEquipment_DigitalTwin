@@ -16,10 +16,21 @@ class Robot {
 	private:
 		RobotState robotState;
 		Wafer* currentWafer;
+		struct Position
+		{
+			int x;
+			int y;
+			int z;
+		};
+		Position currentPosition;
+		Position targetPosition;
+		Position homePosition;
+
 	public:
 		Robot();
-		void Move();
+		void Move(int x, int y, int z);
 		void MoveComplete();
+		void Homing();
 		void Pick();
 		void PickComplete();
 		void Place();
