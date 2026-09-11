@@ -142,6 +142,7 @@
     <ClInclude Include="Chamber.h" />
     <ClInclude Include="EquipmentController.h" />
     <ClInclude Include="LoadPort.h" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="Robot.h" />
     <ClInclude Include="Wafer.h" />
   </ItemGroup>
@@ -149,6 +150,7 @@
     <ClCompile Include="Chamber.cpp" />
     <ClCompile Include="EquipmentController.cpp" />
     <ClCompile Include="LoadPort.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Robot.cpp" />
     <ClCompile Include="Wafer.cpp" />

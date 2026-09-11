@@ -1,5 +1,6 @@
 #pragma once
 #include "Wafer.h"
+#include "Logger.h"
 
 enum class RobotState {
 	Idle,
@@ -16,6 +17,7 @@ class Robot {
 	private:
 		RobotState robotState;
 		Wafer* currentWafer;
+		Logger logger;
 		struct Position
 		{
 			int x;

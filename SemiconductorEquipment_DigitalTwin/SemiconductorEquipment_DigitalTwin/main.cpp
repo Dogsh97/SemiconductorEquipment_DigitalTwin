@@ -1,14 +1,13 @@
-#include "Robot.h"
+#include "Logger.h"
 #include <iostream>
 
 int main()
 {
-    Robot robot;
+    Logger logger;
 
-    robot.Move(10, 20, 30);
-    robot.MoveComplete();
-
-    robot.Homing();
+    logger.Log("hi");
+    logger.PrintHistory();
+    logger.ResetHistory();
 
     return 0;
 }
