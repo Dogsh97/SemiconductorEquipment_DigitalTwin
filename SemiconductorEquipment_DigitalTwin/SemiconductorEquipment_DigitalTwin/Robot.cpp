@@ -45,11 +45,9 @@ void Robot::Move(int x,int y,int z) {
 			}
 		}
 
-		logger.Log("Moving");
 	}
 	else {
 		robotState = RobotState::Error;
-		logger.Log("Moving Error");
 	}
 }
 
@@ -59,11 +57,9 @@ void Robot::MoveComplete() {
 		&& (currentPosition.y == targetPosition.y)
 		&& (currentPosition.z == targetPosition.z)) {
 		robotState = RobotState::Moved;
-		logger.Log("Move Success");
 	}
 	else {
 		robotState = RobotState::Error;
-		logger.Log("Move Failed");
 	}
 }
 
@@ -98,58 +94,47 @@ void Robot::Homing() {
 			currentPosition.z -= 1;
 		}
 	}
-
-	logger.Log("Homing Success");
 }
 
 
 void Robot::Pick() {
 	if (robotState == RobotState::Moved) {
 		robotState = RobotState::Picking;
-		logger.Log("Picking Start");
 	}
 	else {
 		robotState = RobotState::Error;
-		logger.Log("Picking Error");
 	}
 }
 
 void Robot::PickComplete() {
 	if (robotState == RobotState::Picking && currentWafer != nullptr) {
 		robotState = RobotState::Picked;
-		logger.Log("Pick Success");
 	}
 	else {
 		robotState = RobotState::Error;
-		logger.Log("Pick Error");
 	}
 }
 
 void Robot::Place() {
 	if (robotState == RobotState::Picked ) {
 		robotState = RobotState::Placing;
-		logger.Log("Place Success");
 	}
 	else {
 		robotState = RobotState::Error;
-		logger.Log("Place Error");
 	}
 }
 
 void Robot::PlaceComplete() {
 	if (robotState == RobotState::Placing && currentWafer == nullptr) {
 		robotState = RobotState::Placed;
-		logger.Log("Placed Success");
 	}
 	else {
 		robotState = RobotState::Error;
-		logger.Log("Placed Error");
 	}
 }
 
 void Robot::Reset() {
 	robotState = RobotState::Idle;
-	logger.Log("Reset Success");
 }
 
 Wafer* Robot::GiveWafer() {

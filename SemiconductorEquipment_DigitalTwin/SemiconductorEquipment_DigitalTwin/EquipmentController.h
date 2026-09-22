@@ -3,6 +3,7 @@
 #include "LoadPort.h"
 #include "Chamber.h"
 #include "Robot.h"
+#include "Logger.h"
 
 class EquipmentController {
 	private:
@@ -10,6 +11,7 @@ class EquipmentController {
 		LoadPort loadPort;
 		Chamber chamber;
 		Robot robot;
+		Logger logger;
 
 	public:
 		EquipmentController();
