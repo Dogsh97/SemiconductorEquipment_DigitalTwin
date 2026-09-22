@@ -1,13 +1,13 @@
-#include "Logger.h"
+#include "EquipmentController.h"
 #include <iostream>
 
 int main()
 {
-    Logger logger;
+    EquipmentController Equip;
 
-    logger.Log("hi");
-    logger.PrintHistory();
-    logger.ResetHistory();
+    Equip.Initialize();
+    Equip.Start();
+    Equip.Stop();
 
     return 0;
 }
